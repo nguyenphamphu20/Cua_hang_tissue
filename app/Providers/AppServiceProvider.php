@@ -5,6 +5,7 @@ namespace App\Providers;
 // use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use App\Models\Type_Products;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +23,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+        view()->composer("layouts.header", function ($view) {
+            $loai_sanpham = Type_Products::all();
+            $view->with("loai_sanpham", $loai_sanpham);
+        });
     }
 }

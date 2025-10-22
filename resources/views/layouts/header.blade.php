@@ -30,7 +30,7 @@
             <div class="d-flex justify-content-between align-items-center">
 
                 <div class="flex-shrink-0">
-                    <a href="index.html" id="logo">
+                    <a href="index" id="logo">
                         <img src="source/assets/dest/images/logo-cake.png" width="200px" alt="Logo">
                     </a>
                 </div>
@@ -102,7 +102,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row">
 
                     <li class="nav-item me-3">
-                        <a class="nav-link text-white" href="index.html">Trang chủ</a>
+                        <a class="nav-link text-white" href="index">Trang chủ</a>
                     </li>
 
                     <li class="nav-item dropdown me-3">
@@ -111,15 +111,14 @@
                             Sản phẩm
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="product_type.html">Sản phẩm 1</a></li>
-                            <li><a class="dropdown-item" href="product_type.html">Sản phẩm 2</a></li>
-                            <li><a class="dropdown-item" href="product_type.html">Sản phẩm 3</a></li>
-                            <li><a class="dropdown-item" href="product_type.html">Sản phẩm 4</a></li>
+                            @foreach ( $loai_sanpham as $loai )
+                            <li><a class="dropdown-item" href="product_type.html">{{$loai -> name}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
 
-                    <li class="nav-item me-3"><a class="nav-link text-white" href="about.html">Giới thiệu</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="contacts.html">Liên hệ</a></li>
+                    <li class="nav-item me-3"><a class="nav-link text-white" href="gioi-thieu">Giới thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="lien-he">Liên hệ</a></li>
                 </ul>
             </div>
         </div>
