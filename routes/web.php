@@ -7,8 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/index", [PageController::class, "getIndex"]);
-Route::get("/loai-san-pham/{type}", [PageController::class, "getLoaisanpham"]);
-Route::get("/chi-tiet-san-pham", [PageController::class, "getChitietsanpham"]);
-Route::get("/lien-he", [PageController::class, "getLienhe"]);
-Route::get("/gioi-thieu", [PageController::class, "getGioithieu"]);
+Route::get("/index", [PageController::class, "getIndex"])->name("index");
+Route::get("/loai-san-pham/{id}", [PageController::class, "getLoaisanpham"])->name("loaisanpham");
+Route::get("/chi-tiet-san-pham/{id}", [PageController::class, "getChitietsanpham"])->name("chitietsanpham");
+Route::get("/lien-he", [PageController::class, "getLienhe"])->name("lienhe");
+Route::get("/gioi-thieu", [PageController::class, "getGioithieu"])->name("gioithieu");

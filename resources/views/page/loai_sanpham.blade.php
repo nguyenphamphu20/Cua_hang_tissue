@@ -8,7 +8,7 @@
             </div>
             <div>
                 <div class="beta-breadcrumb font-large">
-                    <a href="index">Home</a> / <span>{{$loai -> name}}</span>
+                    <a href="index">Trang chủ</a> / <span>{{$loai -> name}}</span>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                                     </div>
                                     @endif
                                     <div class="single-item-header">
-                                        <a href="product.html"><img height="250"
+                                        <a href="{{route('chitietsanpham',$sptl->id)}}"><img height="250"
                                                 src="source/image/product/{{$sptl -> image}}" alt=""
                                                 class="img-fluid"></a>
                                     </div>
@@ -63,8 +63,8 @@
                                     <div class="single-item-caption d-flex justify-content-between align-items-center">
                                         <a class="add-to-cart" href="shopping_cart.html"><i
                                                 class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">Chi tiết<i
-                                                class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary" href="{{route('chitietsanpham',$sptl->id)}}">Chi
+                                            tiết<i class="fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                     </div>
                                     @endif
                                     <div class="single-item-header">
-                                        <a href="product.html"><img height="250"
+                                        <a href="{{route('chitietsanpham',$spk->id)}}"><img height="250"
                                                 src="source/image/product/{{$spk -> image}}" alt=""
                                                 class="img-fluid"></a>
                                     </div>
@@ -108,8 +108,8 @@
                                     <div class="single-item-caption d-flex justify-content-between align-items-center">
                                         <a class="add-to-cart" href="shopping_cart.html"><i
                                                 class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">Chi tiết<i
-                                                class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary" href="{{route('chitietsanpham',$spk->id)}}">Chi
+                                            tiết<i class="fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>

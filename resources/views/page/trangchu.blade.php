@@ -77,7 +77,7 @@
                                     </div>
                                     @endif
                                     <div class="single-item-header">
-                                        <a href="product.html"><img height="250"
+                                        <a href="{{route('chitietsanpham',$new->id)}}"><img height="250"
                                                 src="source/image/product/{{$new->image}}" alt=""></a>
                                     </div>
                                     <div class="single-item-body">
@@ -95,8 +95,8 @@
                                     <div class="single-item-caption mt-3 mb-3">
                                         <a class="add-to-cart pull-left" href="shopping_cart.html"><i
                                                 class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">Chi tiết<i
-                                                class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary" href="{{route('chitietsanpham',$new->id)}}">Chi
+                                            tiết<i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@
                                     </div>
                                     @endif
                                     <div class="single-item-header">
-                                        <a href="product.html"><img height="250"
+                                        <a href="{{route('chitietsanpham',$pro->id)}}"><img height="250"
                                                 src="source/image/product/{{$pro -> image}}" alt=""></a>
                                     </div>
                                     <div class="single-item-body">
@@ -142,14 +142,15 @@
                                     <div class="single-item-caption mt-3 mb-3">
                                         <a class="add-to-cart pull-left" href="shopping_cart.html"><i
                                                 class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">Chi tiết<i
-                                                class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary" href="{{route('chitietsanpham',$pro->id)}}">Chi
+                                            tiết<i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
-                            <div class="d-flex justify-content-center">{{ $new_product->links() }}</div>
+                            <div class="d-flex justify-content-center">{{ $new_product->appends(["pagenew" =>
+                                $new_product -> currentPage()]) }}</div>
                         </div>
                     </div> <!-- .beta-products-list -->
                 </div>
