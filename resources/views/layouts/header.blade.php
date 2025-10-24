@@ -1,5 +1,4 @@
 <header id="header">
-
     <div class="header-top bg-light border-bottom">
         <div class="container py-2">
             <div class="d-flex justify-content-between align-items-center flex-wrap">
@@ -50,37 +49,87 @@
                         <div class="cart dropdown">
                             <div class="beta-select dropdown-toggle" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                <i class="fa fa-shopping-cart"></i> Giỏ hàng (Trống) <i class="fa fa-chevron-down"></i>
+                                <i class="fa fa-shopping-cart"></i> Giỏ hàng
+                                (@if (Session::has('cart'))
+                                {{ Session('cart')->totalQty }}
+                                @else
+                                Trống
+                                @endif)
+                                <i class="fa fa-chevron-down"></i>
                             </div>
 
                             <div class="beta-dropdown dropdown-menu cart-body dropdown-menu-end p-3"
                                 style="min-width: 300px;">
 
+                                @if (Session::has('cart'))
+                                @foreach($product_cart as $product)
                                 <div class="cart-item border-bottom mb-2 pb-2">
                                     <div class="media d-flex align-items-center">
-                                        <a class="me-3 flex-shrink-0" href="#"><img
-                                                src="source/assets/dest/images/products/cart/1.png" alt=""
-                                                style="width: 50px;"></a>
+
+                                        <div class="ms-auto me-2 text-nowrap">
+                                            <a href="{{route('xoagiohang',$product['item']['id'])}}">
+                                                <i class="fa fa-minus">
+                                                </i>
+                                            </a>
+
+                                            <a href="{{route('themgiohang',$product['item']['id'])}}">
+                                                <i class="fa fa-plus">
+                                                </i>
+                                            </a>
+                                        </div>
+
+                                        <a class="me-3 flex-shrink-0" href="#">
+                                            <img src="source/image/product/{{ $product['item']['image'] }}"
+                                                alt="hình sản phẩm" style="width: 50px;">
+                                        </a>
+
                                         <div class="media-body flex-grow-1">
-                                            <span class="cart-item-title d-block fw-bold">Sample Woman Top</span>
-                                            <span class="cart-item-options d-block text-muted small">Size: XS; Colar:
-                                                Navy</span>
-                                            <span class="cart-item-amount d-block">1x<span
-                                                    class="fw-bold text-danger">$49.50</span></span>
+                                            <span class="cart-item-title d-block fw-bold">{{ $product['item']['name']
+                                                }}</span>
+                                            <span class="cart-item-amount d-block">
+                                                {{ $product['qty'] }} x
+                                                <span class="fw-bold text-danger">
+                                                    @if($product['item']['promotion_price'] == 0)
+                                                    {{ number_format($product['item']['unit_price']) }} VNĐ
+                                                    @else
+                                                    {{ number_format($product['item']['promotion_price']) }} VNĐ
+                                                    @endif
+                                                </span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-
+                                @endforeach
                                 <div class="cart-caption border-top pt-2">
                                     <div class="cart-total text-end mb-2">
-                                        Tổng tiền: <span class="cart-total-value fw-bold text-primary">$34.55</span>
+                                        Tổng tiền:
+                                        <span class="cart-total-value fw-bold text-primary">
+                                            {{ number_format(Session('cart')->totalPrice) }} VNĐ
+                                        </span>
                                     </div>
                                     <div class="d-grid">
-                                        <a href="checkout.html" class="btn btn-primary text-center">
+                                        <a href="{{ route('dathang') }}" class="btn btn-primary text-center">
                                             Đặt hàng <i class="fa fa-chevron-right ms-1"></i>
                                         </a>
                                     </div>
                                 </div>
+                                @else
+                                <div class="p-2 text-center text-muted">Giỏ hàng của bạn đang trống.</div>
+                                <div class="cart-caption border-top pt-2">
+                                    <div class="cart-total text-end mb-2">
+                                        Tổng tiền:
+                                        <span class="cart-total-value fw-bold text-primary">
+                                            0 VNĐ
+                                        </span>
+                                    </div>
+                                    <div class="d-grid">
+                                        <a href="{{ route('dathang') }}" class="btn btn-primary text-center disabled">
+                                            Đặt hàng <i class="fa fa-chevron-right ms-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>
