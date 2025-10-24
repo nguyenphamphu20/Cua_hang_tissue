@@ -26,4 +26,9 @@ Route::get('dang-xuat', [PageController::class, "get_DangXuat"])->name("dangxuat
 
 Route::group(["prefix" => "admin"], function () {
     Route::get("/index", [AdminController::class, "get_index"])->name("adminindex");
+    Route::get("/them-loai-moi", [AdminController::class, "get_AddType"])->name("addtype");
+    Route::post("/them-loai-moi", [AdminController::class, "post_AddType"])->name("addtype");
+    Route::get("/capnhat-loai-sanpham/{id}", [AdminController::class, "get_EditType"])->name("edittype");
+    Route::post("/capnhat-loai-sanpham/{id}", [AdminController::class, "post_EditType"])->name("edittype");
+    Route::get("/xoa-loai-sanpham/{id}", [AdminController::class, "get_DeleteType"])->name("deletetype");
 });

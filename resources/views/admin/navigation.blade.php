@@ -54,10 +54,10 @@ bottom: 0">
 
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Danh Sách</a>
+                            <a href="{{route('adminindex')}}">Danh Sách</a>
                         </li>
                         <li>
-                            <a href="#">Thêm Mới</a>
+                            <a href="{{route('addtype')}}">Thêm Mới</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
