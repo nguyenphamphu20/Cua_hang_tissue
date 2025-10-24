@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,3 +23,7 @@ Route::post("/dang-ky", [PageController::class, "post_DangKy"])->name("dangky");
 Route::get("/dang-nhap", [PageController::class, "get_DangNhap"])->name("dangnhap");
 Route::post("/dang-nhap", [PageController::class, "post_DangNhap"])->name("dangnhap");
 Route::get('dang-xuat', [PageController::class, "get_DangXuat"])->name("dangxuat");
+
+Route::group(["prefix" => "admin"], function () {
+    Route::get("/index", [AdminController::class, "get_index"])->name("adminindex");
+});
