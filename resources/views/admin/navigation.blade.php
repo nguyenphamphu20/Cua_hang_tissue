@@ -72,6 +72,14 @@ bottom: 0">
                         <li>
                             <a href="#">Thêm Mới</a>
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cube fa-fw"></i> Đơn Đặt Hàng<span class="fa arrow"></span> </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{route('billindex')}}">Danh Sách</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

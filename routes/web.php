@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DonDatHangController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,4 +32,9 @@ Route::group(["prefix" => "admin"], function () {
     Route::get("/capnhat-loai-sanpham/{id}", [AdminController::class, "get_EditType"])->name("edittype");
     Route::post("/capnhat-loai-sanpham/{id}", [AdminController::class, "post_EditType"])->name("edittype");
     Route::get("/xoa-loai-sanpham/{id}", [AdminController::class, "get_DeleteType"])->name("deletetype");
+
+    Route::get("/billindex", [DonDatHangController::class, "get_index"])->name("billindex");
+    Route::get("/chi-tiet-don-dat-hang/{id}", [DonDatHangController::class, "get_BillDetail"])->name("billdetail");
+    Route::get("/xoa-don-hang/{id}", [DonDatHangController::class, "get_DeleteBill"])->name("deletebill");
+    Route::get("/cap-nhat-don-hang/{id}", [DonDatHangController::class, "get_UpdateStatus"])->name("updatebill");
 });
