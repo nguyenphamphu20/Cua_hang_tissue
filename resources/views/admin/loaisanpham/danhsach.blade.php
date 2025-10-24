@@ -29,9 +29,11 @@
 
                     <td class="center">
 
-                        <a class="btn btn-danger" href="#"> <i class="fa fa-trash-o fa-fw"></i> Xoá</a>
+                        <a class="btn btn-danger" href="{{route('deletetype', $lsp->id)}}"> <i
+                                class="fa fa-trash-o fa-fw"></i> Xoá</a>
 
-                        <a class="btn btn-info" href="#"> <i class="fa fa-pencil fa-fw"></i> Sửa</a>
+                        <a class="btn btn-info" href="{{route('edittype', $lsp->id)}}">
+                            <i class="fa fa-pencil fa-fw"></i> Sửa</a>
                     </td>
                 </tr>
                 @endforeach
