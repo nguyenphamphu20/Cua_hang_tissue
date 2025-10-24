@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Slide;
 use App\Models\Products;
 use App\Models\Type_Products;
@@ -14,6 +18,7 @@ use App\Models\Bill_detail;
 use App\Models\Cart;
 use App\Models\Customer;
 use App\Models\Bills;
+use App\Models\User;
 
 class PageController extends Controller
 {
@@ -111,5 +116,71 @@ class PageController extends Controller
         }
         Session::forget("cart");
         return view("page/thongbao");
+    }
+
+    public function get_TimKiem(Request $req)
+    {
+        $tukhoa = $req["tukhoa"];
+        if (is_numeric($tukhoa)) {
+            $dssanpham = Products::where('unit_price', ">=", $tukhoa)->get();
+        } else {
+            $dssanpham = Products::where('name', 'like', '%' . $tukhoa . '%')->get();
+        }
+        return view('page/timkiem', compact("dssanpham"));
+    }
+
+    public function get_DangKy()
+    {
+        return view("page/dangky");
+    }
+    public function post_DangKy(Request $req)
+    {
+        $val = $req->validate([
+            'name' => 'required',
+            'email' => 'email|unique:users',
+            'password' => 'min:8|max:30',
+            'repassword' => 'same:password'
+        ], [
+            'name.required' => "chưa nhập tên",
+            'email.email' => 'Địa chỉ thư không đúng định dạng',
+            'email.unique' => 'Địa chỉ thư đã có người đăng ký',
+            'password.min' => 'Mật khẩu tối thiểu 8 ký tự',
+            'password.max' => 'Mật khẩu tối đa 30 ký tự',
+            'repassword.same' => 'Mật khẩu không khớp !!!'
+        ]);
+        $user = new User();
+        $user->name = $val["name"];
+        $user->email = $val["email"];
+        $user->password = Hash::make($val["password"]);
+        $user->save();
+        return redirect()->back()->with("thongbao", "Đăng ký thành công");
+    }
+
+    public function get_DangNhap()
+    {
+        return view("page/dangnhap");
+    }
+    public function post_DangNhap(Request $req)
+
+    {
+        $val = $req->validate([
+            'email' => 'email',
+            'password' => 'min:8|max:30',
+        ], [
+            'email.email' => 'địa chỉ thư không đúng định dạng',
+            'password.min' => 'mật khẩu tối thiểu 8 ký tự',
+            'password.max' => 'mật khẩu tối đa 30 ký tự',
+        ]);
+        $chungthuc = array('email' => $val['email'], 'password' => $val['password']);
+        if (Auth::attempt($chungthuc)) {
+            return redirect()->route("index");
+        } else {
+            return redirect()->back()->with("thongbao", "Đăng nhập thất bại");
+        }
+    }
+    public function get_DangXuat()
+    {
+        Auth::logout();
+        return redirect()->route("index");
     }
 }

@@ -16,8 +16,33 @@
                     <ul class="list-unstyled d-flex mb-0 small">
                         <li class="ms-3"><a class="text-decoration-none text-secondary" href="#"><i
                                     class="fa fa-user me-1"></i>Tài khoản</a></li>
-                        <li class="ms-3"><a class="text-decoration-none text-secondary" href="#">Đăng kí</a></li>
-                        <li class="ms-3"><a class="text-decoration-none text-secondary" href="#">Đăng nhập</a></li>
+                        <li>
+                            <div class="ms-3"> {{-- ms-auto (margin-start: auto) đẩy khối này sang phải --}}
+                                <ul class="nav"> {{-- Dùng class 'nav' của B5 --}}
+
+                                    @if(Auth::check())
+                                    <li class="nav-item"> {{-- Dùng class 'nav-item' --}}
+                                        <a class="nav-link p-0 me-3" href="{{route('dangxuat')}}"> {{-- p-0 loại bỏ
+                                            padding,
+                                            me-3 thêm khoảng cách bên phải --}}
+                                            <i class="fa fa-user me-1"></i> {{-- me-1 thêm khoảng cách sau icon --}}
+                                            {{Auth::user()->name}}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-0" href="{{route('dangxuat')}}">Đăng xuất</a>
+                                    </li>
+                                    @else
+                                    <li class="nav-item">
+                                        <a class="nav-link p-0 me-3" href="{{route('dangky')}}">Đăng kí</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link p-0" href="{{route('dangnhap')}}">Đăng nhập</a>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -37,8 +62,9 @@
                 <div class="d-flex align-items-center ms-auto">
 
                     <div class="me-3">
-                        <form class="d-flex" role="search" method="get" id="searchform" action="/">
-                            <input class="form-control" type="text" value="" name="s" id="s"
+                        <form class="d-flex" role="search" method="get" id="searchform" action="{{route('timkiem')}}">
+                            @csrf
+                            <input class="form-control" type="text" value="" name="tukhoa"
                                 placeholder="Nhập từ khóa..." />
                             <button class="btn btn-outline-secondary fa fa-search ms-1" type="submit"
                                 id="searchsubmit"></button>
