@@ -16,3 +16,9 @@ Route::get("/them-vao-gio-hang/{id}", [PageController::class, "get_ThemGioHang"]
 Route::get("/xoa-gio-hang/{id}", [PageController::class, "get_XoaGioHang"])->name("xoagiohang");
 Route::get("/dat-hang", [PageController::class, "get_DatHang"])->name("dathang");
 Route::post("/dat-hang", [PageController::class, "post_DatHang"])->name("dathang");
+Route::get("/tim-kiem", [PageController::class, "get_timkiem"])->name("timkiem");
+Route::get("/dang-ky", [PageController::class, "get_DangKy"])->name("dangky");
+Route::post("/dang-ky", [PageController::class, "post_DangKy"])->name("dangky");
+Route::get("/dang-nhap", [PageController::class, "get_DangNhap"])->name("dangnhap");
+Route::post("/dang-nhap", [PageController::class, "post_DangNhap"])->name("dangnhap");
+Route::get('dang-xuat', [PageController::class, "get_DangXuat"])->name("dangxuat");
